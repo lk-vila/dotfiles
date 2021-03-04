@@ -1,0 +1,13 @@
+#!/bin/bash
+#Run this to have all symlinks created automatically
+
+cd config
+
+arr=$(exa -D)
+
+for i in $arr
+do 
+	cd $i
+	stow -t ~ *
+	cd ..
+done
