@@ -2,3 +2,4 @@
 alias swapclean="sudo swapoff -a && sudo swapon -a"
 alias ls=exa
 alias ranger=". ranger" 
+alias autojump="j"
