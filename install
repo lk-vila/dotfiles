@@ -42,3 +42,6 @@ sudo $PFX $(echo $apps | tr "\n" " "); echo
 #Apps installed through scripts
 curl -fsSL https://starship.rs/install.sh | bash
 mkdir -p ~/.tmp && cd ~/.tmp && git clone git://github.com/wting/autojump.git && cd autojump && ./install.py && rm -rf ~/.tmp/autojump
+
+#Final config
+chsh -s /bin/zsh $USER
