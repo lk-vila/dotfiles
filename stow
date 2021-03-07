@@ -1,6 +1,8 @@
 #!/bin/bash
 #Run this to have all symlinks created automatically
 
+echo "Creating symlinks..."; echo
+
 arr=$(exa -D)
 
 for i in $arr
