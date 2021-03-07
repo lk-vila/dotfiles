@@ -1,0 +1,44 @@
+#!/bin/bash
+
+print_format () {
+    echo "$1"
+}
+
+apt_case () {
+    PPAS=$(echo $"cat ppas.txt" | tr "\n" " ")
+
+    for ppa in $PPAS
+    do
+    sudo add-apt-repository ppa:$ppa
+    done
+}
+
+#Config
+print_format $'Select a package manager to use\n\n(1) pamac  (2) apt\n'
+read -p ":: Answer: " C; echo
+
+case "$C" in
+"1")
+    PFX='pamac install'
+    ;;
+"2")
+	 PFX='apt install'; apt_case
+    ;;
+*)
+	print_format $'\nNot a valid input.\n' && exit 1
+    ;;
+esac
+
+#Install and use stow (before applications create config files)
+print_format $'First, installing stow...\n'
+sudo $PFX stow exa; echo
+./stow
+
+#Install apps with selected package manager
+print_format $'Installing other applications...\n'
+apps=$(cat apps.txt)
+sudo $PFX $(echo $apps | tr "\n" " "); echo
+
+#Apps installed through scripts
+curl -fsSL https://starship.rs/install.sh | bash
+mkdir -p ~/.tmp && cd ~/.tmp && git clone git://github.com/wting/autojump.git && cd autojump && ./install.py && rm -rf ~/.tmp/autojump
