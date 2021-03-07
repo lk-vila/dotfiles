@@ -2,7 +2,6 @@
 alias swapclean="sudo swapoff -a && sudo swapon -a"
 alias ls="exa"
 alias ranger=". ranger"
-alias autojump="j"
 alias cp="cp -i"                                                # Confirm before overwriting something
 alias df='df -h'                                                # Human-readable sizes
 alias free='free -m'                                            # Show sizes in MB
