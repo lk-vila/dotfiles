@@ -26,11 +26,13 @@ WORDCHARS=${WORDCHARS//\/[&.;]}                                 # Don't consider
 
 ## Keybindings section
 bindkey -e
+bindkey '^[[1~' beginning-of-line                               #
 bindkey '^[[7~' beginning-of-line                               # Home key
 bindkey '^[[H' beginning-of-line                                # Home key
 if [[ "${terminfo[khome]}" != "" ]]; then
   bindkey "${terminfo[khome]}" beginning-of-line                # [Home] - Go to beginning of line
 fi
+bindkey '^[[4~' end-of-line                                     #
 bindkey '^[[8~' end-of-line                                     # End key
 bindkey '^[[F' end-of-line                                     # End key
 if [[ "${terminfo[kend]}" != "" ]]; then
