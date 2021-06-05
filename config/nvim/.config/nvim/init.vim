@@ -21,6 +21,7 @@ Plug 'sheerun/vim-polyglot'
 Plug 'itchyny/lightline.vim'
 
 Plug 'morhetz/gruvbox'
+Plug 'arcticicestudio/nord-vim'
 
 call plug#end()
 
@@ -36,7 +37,7 @@ syntax enable
 set omnifunc=syntaxcomplete#Complete
 
 set termguicolors
-colorscheme gruvbox
+colorscheme nord
 
 set ts=3
 set sw=3
