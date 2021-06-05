@@ -1,5 +1,6 @@
 neovim
 ranger
+rustup
 tmux
 zsh
     zsh-syntax-highlighting

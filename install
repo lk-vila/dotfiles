@@ -48,9 +48,22 @@ print_format $'Installing other applications...\n'
 apps=$(cat apps.txt)
 $PFX $(echo $apps | tr "\n" " "); echo
 
-#Apps installed through scripts
-curl -fsSL https://starship.rs/install.sh | bash
-mkdir -p ~/.tmp && cd ~/.tmp && git clone git://github.com/wting/autojump.git && cd autojump && ./install.py && rm -rf ~/.tmp/autojump
+#Apps installed through scripts or yay
+case "$C" in
+"1")
+    $PFX yay
+    apps=$(cat yay_apps.txt)
+    yay -S $(echo $yay_apps | tr "\n" " "); echo
+    ;;
+"2")
+    curl -fsSL https://starship.rs/install.sh | bash 
+    mkdir -p ~/.tmp && cd ~/.tmp && git clone git://github.com/wting/autojump.git && cd autojump && ./install.py && rm -rf ~/.tmp/autojump
+    ;;
+*)
+	print_format $'\nNot a valid input.\n' && exit 1
+    ;;
+esac
+
 
 #Final config
 chsh -s /bin/zsh $USER
