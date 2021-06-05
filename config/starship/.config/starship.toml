@@ -20,12 +20,12 @@ disabled = true
 
 [character]
 #style = "#035ee8"
-success_symbol = "[❯](#98971a)"
+success_symbol = "[❯](#7da2a2)"
 error_symbol = "[❌](red)"
 
 [cmd_duration]
 format = " [Δ]($style)$duration"
-style = "#458588"
+style = "#88c0d0"
 
 [[battery.display]]
 threshold = 10
@@ -40,7 +40,7 @@ format = "via [$symbol $version]($style) "
 symbol = "cmake"
 
 [directory]
-style = "#458588"
+style = "#88c0d0"
 format = "\\[[$path]($style)\\][$read_only](red)"
 read_only = "🔒"
 
@@ -48,17 +48,17 @@ read_only = "🔒"
 #symbol = "erlang "
 
 [git_branch]
-style = "#458588"
+style = "#88c0d0"
 symbol = ""
 format = "-\\[$symbol[$branch]($style)\\]"
 
 [git_status]
-style = "#458588"
+style = "#88c0d0"
 format = "[$all_status$ahead_behind]($style)"
 
 [hostname]
 ssh_only = false
-style = "#d79921"
+style = "#81a1c1"
 format = "[$hostname]($style)"
 
 #[java]
@@ -84,6 +84,6 @@ format = "[$hostname]($style)"
 
 [username]
 show_always = true
-style_user = "#98971a"
-style_root = "#98971a"
+style_user = "#7da2a2"
+style_root = "#7da2a2"
 format = "[$user]($style)"
