@@ -4,6 +4,36 @@ print_format () {
     echo "$1"
 }
 
+both () {
+    #Install apps with selected package manager
+    print_format $'Installing applications \n'
+    apps=$(cat apps.json | jq '.both | @sh' | tr -d \',\")
+    $PFX $apps; echo
+}
+
+final () {
+    #Final config
+    chsh -s /bin/zsh $USER
+}
+
+pacman_case () {
+    #Install and use stow (before applications create config files)
+    print_format $'First, installing stow.\n'
+    $PFX stow exa jq; echo
+    ./stow
+
+    both
+
+    apps=$(cat apps.json | jq '.arch | @sh' | tr -d \',\")
+    $PFX $apps; echo
+
+    $PFX yay
+    aur_apps=$(cat apps.json | jq '.aur | @sh' | tr -d \',\")
+    yay -S $(echo $aur_apps | tr "\n" " "); echo
+
+    final
+}
+
 apt_case () {
     PPAS=$(echo $"cat ppas.txt" | tr "\n" " ")
 
@@ -11,6 +41,10 @@ apt_case () {
     do
     add-apt-repository ppa:$ppa
     done
+
+    both
+
+    final
 }
 
 #Config 
@@ -36,53 +70,14 @@ do
     case "$C" in
     "p")
         PFX="$PFX pacman -S"
+        pacman_case
         ;;
     "a")
-        PFX="$PFX apt install"; apt_case
+        PFX="$PFX apt install"
+        apt_case
         ;;
     *)
         print_format $'\nNot a valid input.\n';
         ;;
     esac
 done
-
-#Install and use stow (before applications create config files)
-print_format $'First, installing stow.\n'
-$PFX stow exa jq; echo
-./stow
-
-#Install apps with selected package manager
-print_format $'Installing applications \n'
-apps=$(cat apps.json | jq '.both | @sh' | tr -d \',\")
-$PFX $apps; echo
-
-case "$C" in
-"p")
-    apps=$(cat apps.json | jq '.both | @sh' | tr -d \',\")
-    $PFX $apps; echo
-    ;;
-"a")
-    echo
-    ;;
-*)
-	print_format $'\nNot a valid input.\n' && exit 1
-    ;;
-
-#Apps installed through scripts or aur helper
-case "$C" in
-"p")
-    apps=$(cat aur_apps.txt)
-    yay -S $(echo $aur_apps | tr "\n" " "); echo
-    ;;
-"a")
-    curl -fsSL https://starship.rs/install.sh | bash 
-    mkdir -p ~/.tmp && cd ~/.tmp && git clone git://github.com/wting/autojump.git && cd autojump && ./install.py && rm -rf ~/.tmp/autojump
-    ;;
-*)
-	print_format $'\nNot a valid input.\n' && exit 1
-    ;;
-esac
-
-
-#Final config
-chsh -s /bin/zsh $USER
