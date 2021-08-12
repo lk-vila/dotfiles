@@ -56,6 +56,19 @@ print_format $'Installing applications \n'
 apps=$(cat apps.json | jq '.both | @sh' | tr -d \',\")
 $PFX $apps; echo
 
+case "$C" in
+"p")
+    $PFX yay
+    apps=$(cat apps.json | jq '.both | @sh' | tr -d \',\")
+    $PFX $apps; echo
+    ;;
+"a")
+    
+    ;;
+*)
+	print_format $'\nNot a valid input.\n' && exit 1
+    ;;
+
 #Apps installed through scripts or aur helper
 case "$C" in
 "p")
