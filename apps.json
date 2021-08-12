@@ -13,5 +13,8 @@
         	"zsh-syntax-highlighting",
         	"zsh-autosuggestions",
         	"zsh-history-substring-search"
-    ]
+    ],
+	"aur":[
+		"autojump"
+	]
 }
