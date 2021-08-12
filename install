@@ -48,7 +48,7 @@ done
 
 #Install and use stow (before applications create config files)
 print_format $'First, installing stow.\n'
-$PFX stow exa; echo
+$PFX stow exa jq; echo
 ./stow
 
 #Install apps with selected package manager
