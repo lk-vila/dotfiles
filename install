@@ -53,7 +53,7 @@ $PFX stow exa jq; echo
 
 #Install apps with selected package manager
 print_format $'Installing applications \n'
-apps=$(cat -p apps.json | jq '.both | @sh' | tr -d \',\")
+apps=$(cat apps.json | jq '.both | @sh' | tr -d \',\")
 $PFX $apps; echo
 
 #Apps installed through scripts or aur helper
