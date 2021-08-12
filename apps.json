@@ -1,0 +1,17 @@
+{
+    "both":[
+        	"bat",
+        	"neovim",
+        	"ranger",
+			"rclone",
+			"tldr",
+        	"tmux",
+        	"zsh"
+    ],
+    "arch":[
+			"starship",
+        	"zsh-syntax-highlighting",
+        	"zsh-autosuggestions",
+        	"zsh-history-substring-search"
+    ]
+}

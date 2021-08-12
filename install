@@ -13,49 +13,57 @@ apt_case () {
     done
 }
 
-#Config
-print_format $'Select a package manager to use\n\n(1) pamac  (2) apt\n'
-read -p ":: Answer: " C; echo
-
+#Config 
 case "$USER" in
 "root")
     PFX=""
     ;;
 *)
-	PFX="sudo"
+    PFX="sudo"
     ;;
 esac
 
-case "$C" in
-"1")
-    PFX="$PFX pamac install"
-    ;;
-"2")
-	 PFX="$PFX apt install"; apt_case
-    ;;
-*)
-	print_format $'\nNot a valid input.\n' && exit 1
-    ;;
-esac
+C=${1:-"e"}
+
+while [ $C != "p" ] && [ $C != "a" ]
+do
+
+    print_format $'Select a package manager to use\n\n(P)acman  (A)pt\n'
+    read -p ":: Answer: " C; echo
+
+    C="${C,,}"
+
+    case "$C" in
+    "p")
+        PFX="$PFX pacman -S"
+        ;;
+    "a")
+        PFX="$PFX apt install"; apt_case
+        ;;
+    *)
+        print_format $'\nNot a valid input.\n';
+        ;;
+    esac
+done
 
 #Install and use stow (before applications create config files)
-print_format $'First, installing stow...\n'
+print_format $'First, installing stow.\n'
 $PFX stow exa; echo
 ./stow
 
 #Install apps with selected package manager
-print_format $'Installing other applications...\n'
-apps=$(cat apps.txt)
-$PFX $(echo $apps | tr "\n" " "); echo
+print_format $'Installing applications \n'
+apps=$(cat -p apps.json | jq '.both | @sh' | tr -d \',\")
+$PFX $apps; echo
 
-#Apps installed through scripts or yay
+#Apps installed through scripts or aur helper
 case "$C" in
-"1")
+"p")
     $PFX yay
-    apps=$(cat yay_apps.txt)
-    yay -S $(echo $yay_apps | tr "\n" " "); echo
+    apps=$(cat aur_apps.txt)
+    yay -S $(echo $aur_apps | tr "\n" " "); echo
     ;;
-"2")
+"a")
     curl -fsSL https://starship.rs/install.sh | bash 
     mkdir -p ~/.tmp && cd ~/.tmp && git clone git://github.com/wting/autojump.git && cd autojump && ./install.py && rm -rf ~/.tmp/autojump
     ;;

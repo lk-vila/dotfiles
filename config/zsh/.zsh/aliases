@@ -1,6 +1,7 @@
 #!/bin/zsh
 alias swapclean="sudo swapoff -a && sudo swapon -a"
 alias ls="exa"
+alias cat="bat"
 alias ranger=". ranger"
 alias cp="cp -i"                                                # Confirm before overwriting something
 alias df='df -h'                                                # Human-readable sizes

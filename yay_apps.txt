@@ -1,2 +1,0 @@
-autojump-git
-starship
