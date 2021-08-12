@@ -58,12 +58,11 @@ $PFX $apps; echo
 
 case "$C" in
 "p")
-    $PFX yay
     apps=$(cat apps.json | jq '.both | @sh' | tr -d \',\")
     $PFX $apps; echo
     ;;
 "a")
-    
+    echo
     ;;
 *)
 	print_format $'\nNot a valid input.\n' && exit 1
@@ -72,7 +71,6 @@ case "$C" in
 #Apps installed through scripts or aur helper
 case "$C" in
 "p")
-    $PFX yay
     apps=$(cat aur_apps.txt)
     yay -S $(echo $aur_apps | tr "\n" " "); echo
     ;;
