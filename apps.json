@@ -24,6 +24,7 @@
 			"autojump"
 	],
 	"apt":[
+			"autojump",
 			"build-essential",
 			"python3-pynvim"
 	]

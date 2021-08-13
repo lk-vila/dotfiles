@@ -95,6 +95,7 @@ eval "$(starship init zsh)" # Use Starship prompt
   [[ -s /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]] && source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
   [[ -s /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]] && source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev/null
   [[ -s /etc/profile.d/autojump.sh ]] && source /etc/profile.d/autojump.sh
+  [[ -s /usr/share/autojump/autojump.sh ]] && source /usr/share/autojump/autojump.sh
 # }
 
 autoload -U compinit colors zcalc
