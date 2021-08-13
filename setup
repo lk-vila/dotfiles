@@ -1,0 +1,113 @@
+#!/bin/bash
+
+# Ansi color code variables
+red="\e[0;91m"
+blue="\e[0;94m"
+expand_bg="\e[K"
+blue_bg="\e[0;104m${expand_bg}"
+red_bg="\e[0;101m${expand_bg}"
+green_bg="\e[0;102m${expand_bg}"
+green="\e[0;92m"
+white="\e[0;97m"
+bold="\e[1m"
+uline="\e[4m"
+reset="\e[0m"
+
+print_format () {
+    echo -e "${green}::setup::${reset} $1"
+}
+
+print_error () {
+    echo -e "${red}::setup::${reset} $1"
+}
+
+both () {
+    #Install and use stow (before applications create config files)
+    print_format $'Installing some essentials first \n'
+    $PFX stow exa jq; echo
+    print_format $'Creating symlinks \n'
+    ./stow
+
+    mkdir -p $HOME/.bin/
+
+    #Install apps with selected package manager
+    print_format $'Installing other applications \n'
+    apps=$(cat apps.json | jq '.both | @sh' | tr -d \',\")
+    #$PFX $apps; echo
+}
+
+final () {
+    #Final config
+    sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+    chsh -s /bin/zsh $USER
+}
+
+pacman_case () {
+    both
+
+    apps="$apps $(cat apps.json | jq '.pacman | @sh' | tr -d \',\")"
+    $PFX $apps; echo
+
+    print_format $'Installing applications from aur \n'
+    aur_apps=$(cat apps.json | jq '.aur | @sh' | tr -d \',\")
+    yay -S $(echo $aur_apps | tr "\n" " "); echo
+
+    final
+}
+
+apt_scripts () {
+    #Starship
+    sh -c "$(curl -fsSL https://starship.rs/install.sh)"
+
+    #zsh-history-substring-search
+    sudo git clone https://github.com/zsh-users/zsh-history-substring-search \
+    /usr/share/zsh/plugins/zsh-history-substring-search
+
+}
+
+apt_case () {
+    both
+
+    apps="$apps $(cat apps.json | jq '.apt | @sh' | tr -d \',\")"
+    $PFX $apps; echo
+
+    apt_scripts
+
+    final
+}
+
+#Config 
+case "$USER" in
+"root")
+    PFX=""
+    ;;
+*)
+    PFX="sudo"
+    ;;
+esac
+
+C=${1:-"e"}
+
+while [ $C != "p" ] && [ $C != "a" ]
+do
+
+    print_format $'Select a package manager to use\n\n(P)acman  (A)pt\n'
+    read -p ":: Answer: " C; echo
+
+    C="${C,,}"
+
+    [ $C != "p" ] && [ $C != "a" ] && print_error $'Not a valid input \n'
+
+done
+
+case "$C" in
+    "p")
+        PFX="$PFX pacman -S"
+        pacman_case
+        ;;
+    "a")
+        PFX="$PFX apt install"
+        apt_case
+        ;;
+    esac

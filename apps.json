@@ -1,20 +1,28 @@
 {
     "both":[
         	"bat",
+			"bpytop",
         	"neovim",
         	"ranger",
 			"rclone",
 			"tldr",
         	"tmux",
-        	"zsh"
+        	"zsh",
+			"zsh-autosuggestions",
+			"zsh-syntax-highlighting"		
     ],
-    "arch":[
+    "pacman":[
+			"base-devel",
+			"python-pynvim",
 			"starship",
-        	"zsh-syntax-highlighting",
-        	"zsh-autosuggestions",
-        	"zsh-history-substring-search"
+        	"zsh-history-substring-search",
+			"yay"
     ],
 	"aur":[
-		"autojump"
+			"autojump"
+	],
+	"apt":[
+			"build-essential",
+			"python3-pynvim"
 	]
 }

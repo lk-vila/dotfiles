@@ -76,7 +76,7 @@ bindkey '^[[B' history-substring-search-down
 ##### MY CONFIG #####
 
 # Exports {
-  export PATH=$PATH:$HOME/.bin/
+  export PATH="$PATH:$HOME/.bin/"
   export EDITOR=/usr/bin/nvim
 # }
 
@@ -94,7 +94,7 @@ eval "$(starship init zsh)" # Use Starship prompt
   [[ -s /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh ]] && source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh 2>/dev/null
   [[ -s /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]] && source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
   [[ -s /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]] && source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev/null
-  [[ -s /home/manjo/.autojump/etc/profile.d/autojump.sh ]] && source /home/manjo/.autojump/etc/profile.d/autojump.sh
+  [[ -s /etc/profile.d/autojump.sh ]] && source /etc/profile.d/autojump.sh
 # }
 
 autoload -U compinit colors zcalc
