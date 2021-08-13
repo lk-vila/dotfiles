@@ -1,5 +1,7 @@
 {
     "both":[
+			"git",
+			"curl",
         	"bat",
 			"bpytop",
         	"neovim",
