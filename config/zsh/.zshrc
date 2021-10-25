@@ -90,6 +90,8 @@ bindkey '^[[B' history-substring-search-down
 
 eval "$(starship init zsh)" # Use Starship prompt
 
+eval $(ssh-agent) >/dev/null #Start ssh agent
+
 # Plugins {
   [[ -s /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh ]] && source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh 2>/dev/null
   [[ -s /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]] && source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null

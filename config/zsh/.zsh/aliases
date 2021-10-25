@@ -4,5 +4,6 @@ alias ls="exa"
 alias cat="bat"
 alias ranger=". ranger"
 alias cp="cp -i"                                                # Confirm before overwriting something
+alias rm="rm -i" #Confirm before deleting
 alias df='df -h'                                                # Human-readable sizes
 alias free='free -m'                                            # Show sizes in MB

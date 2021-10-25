@@ -44,7 +44,9 @@ final () {
     ([[ -s /usr/share/zsh-history-substring-search/ ]] && sudo mv /usr/share/zsh-history-substring-search /usr/share/zsh/plugins/);
     ([[ -s /usr/share/zsh-syntax-highlighting/ ]] && sudo mv /usr/share/zsh-syntax-highlighting /usr/share/zsh/plugins/);
     ([[ -s /usr/share/zsh-autosuggestions/ ]] && sudo mv /usr/share/zsh-autosuggestions /usr/share/zsh/plugins/);
+
     chsh -s /bin/zsh $USER
+    exec zsh
 }
 
 pacman_case () {
