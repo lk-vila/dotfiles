@@ -1,2 +1,2 @@
 # dotfiles
-Tested with Manjaro and Kali.
+Tested with Arch and Kali.

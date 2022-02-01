@@ -2,8 +2,8 @@
     "both":[
 			"git",
 			"curl",
-        	"bat",
-			"bpytop",
+			"bat",
+			"btop",
         	"neovim",
         	"ranger",
 			"rclone",
@@ -11,7 +11,7 @@
         	"tmux",
         	"zsh",
 			"zsh-autosuggestions",
-			"zsh-syntax-highlighting"		
+			"zsh-syntax-highlighting"
     ],
     "pacman":[
 			"base-devel",
@@ -25,6 +25,7 @@
 	],
 	"apt":[
 			"autojump",
+			"batcat",
 			"build-essential",
 			"python3-pynvim"
 	]

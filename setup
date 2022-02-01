@@ -57,7 +57,8 @@ pacman_case () {
 
     print_format $'Installing applications from aur \n'
     aur_apps=$(cat apps.json | jq '.aur | @sh' | tr -d \',\")
-    yay -S $(echo $aur_apps | tr "\n" " "); echo
+    yay -S paru
+    paru -S $(echo $aur_apps | tr "\n" " "); echo
 
     final
 }
