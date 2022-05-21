@@ -78,6 +78,7 @@ bindkey '^[[B' history-substring-search-down
 # Exports {
   export PATH="$PATH:$HOME/.bin/"
   export EDITOR=/usr/bin/nvim
+  export __GL_YIELD="usleep"                                     # Fix for lag when receiving notifications on PLASMA + X11 + NVIDIA
 # }
 
 # Aliases {
